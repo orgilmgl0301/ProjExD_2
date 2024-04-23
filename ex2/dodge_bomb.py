@@ -34,8 +34,8 @@ def main():
             if key_lst[k]:
                 sum_mv[0] += v[0]
                 sum_mv[1] += v[1]
-        #if key_lst[pg.K_UP]:
-        #   sum_mv[1] -= 5
+        if key_lst[pg.K_UP]:
+           sum_mv[1] -= 5
         #if key_lst[pg.K_DOWN]:
         #    sum_mv[1] += 5
         #if key_lst[pg.K_LEFT]:
