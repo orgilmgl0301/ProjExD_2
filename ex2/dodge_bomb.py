@@ -31,10 +31,11 @@ def game_over(screen:pg.Surface): #ゲームオーバー関数の定義
     k1_rct = k1_img.get_rect()
     k1_rct.center = 550, 450
     screen.blit(k1_img, k1_rct)
-    k2_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0) # 二つ目のこうかとん
-    k2_rct = k2_img.get_rect()
-    k2_rct.center = 1050, 450
-    screen.blit(k2_img, k2_rct)
+    #k2_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0) # 二つ目のこうかとん
+    #k2_rct = k2_img.get_rect()
+    #k2_rct.center = 1050, 450
+    k1_rct.center = 1050, 450
+    screen.blit(k1_img, k1_rct)
 
 
     pg.display.update()
