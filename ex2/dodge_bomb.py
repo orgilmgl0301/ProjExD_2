@@ -2,7 +2,7 @@ import os
 import random
 import sys
 import pygame as pg
-
+import time
 
 WIDTH, HEIGHT = 1600, 900
 DELTA = {
@@ -12,6 +12,15 @@ DELTA = {
     pg.K_RIGHT: (+5,0)
 }
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+def game_over(screen:pg.Surface):
+    blackout = pg.Surface((WIDTH, HEIGHT))
+    pg.draw.rect(blackout,(0,0,0),pg.Rect(0, 0, WIDTH, HEIGHT))
+    blackout.set_alpha(128)
+    screen.blit(blackout,[-0,0])
+    pg.display.update()
+    time.sleep(5)
+
 
 
 def check_bound(obj_rct:pg.Rect) -> tuple[bool, bool]:
@@ -31,7 +40,6 @@ def check_bound(obj_rct:pg.Rect) -> tuple[bool, bool]:
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
-    
     bg_img = pg.image.load("fig/pg_bg.jpg")    
     kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0)
     kk_rct = kk_img.get_rect()
@@ -42,17 +50,14 @@ def main():
     bd_rct = bd_img.get_rect()
     bd_rct.center = random.randint(0,WIDTH), random.randint(0,HEIGHT)
     vx, vy = +5, +5 #横方向速度、縦方向
-
-
     clock = pg.time.Clock()
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
-
-
         if kk_rct.colliderect(bd_rct):   #こうかとんと爆弾がぶつかったら
+            game_over(screen)
             print("Game Over")
             return
         screen.blit(bg_img, [0, 0]) 
